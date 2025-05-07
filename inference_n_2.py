@@ -394,28 +394,3 @@ def main():
 if __name__ == "__main__":
     main()
 
-
-    #/home/jupyter/.cache/huggingface/token
-"""
-import json
-
-# Load your raw patches
-with open("usama.json") as f:
-    raw_patches = json.load(f)
-
-# Prepare in correct format
-formatted_predictions = {}
-
-for instance_id, patch_text in raw_patches.items():
-    formatted_predictions[instance_id] = {
-        "instance_id": instance_id,                # 🛠 ADD THIS LINE
-        "model_patch": patch_text,
-        "model_name_or_path": "your_model_name"     # e.g., "CodeLlama-7b" or anything you want
-    }
-
-# Save the formatted output
-with open("formatted_predictions.json", "w") as f:
-    json.dump(formatted_predictions, f)
-
-"""
-
