@@ -36,15 +36,59 @@ git clone [repository-url]
 cd swe_bench_few_shots_study
 ```
 
-2. Install dependencies:
+2. Install dependencies using uv (recommended) or pip:
+
+Using uv (faster):
 ```bash
-pip install torch transformers datasets tqdm
+# Install uv if you haven't already
+pip install uv
+
+# Create and activate a virtual environment
+uv venv
+source .venv/bin/activate  # On Windows: .venv\Scripts\activate
+
+# Install core dependencies
+uv pip install -r requirements.txt
+
+# Optional: Install all dependencies including development tools
+uv pip install -r requirements.txt --all-extras
+```
+
+Using pip:
+```bash
+# Install core dependencies
+pip install -r requirements.txt
+
+# Optional: Install all dependencies including development tools
+pip install -r requirements.txt --all-extras
 ```
 
 3. Set up your Hugging Face token:
 ```bash
 huggingface-cli login
 ```
+
+## Optional Dependencies
+
+The project includes several optional dependencies that can be installed for different purposes:
+
+### Performance Improvements
+- `flash-attn`: Faster attention computation (Linux/Mac only)
+- `bitsandbytes`: 8-bit quantization for reduced memory usage
+- `xformers`: Memory efficient attention mechanisms
+- `einops`: Enhanced tensor operations
+
+### Development Tools
+- `black`: Code formatting
+- `isort`: Import sorting
+- `flake8`: Code linting
+- `pytest`: Testing framework
+- `pytest-cov`: Test coverage reporting
+- `jupyter` & `ipykernel`: Notebook development support
+
+### Monitoring and Logging
+- `wandb`: Experiment tracking and visualization
+- `tensorboard`: Training visualization
 
 ## Usage
 
@@ -98,6 +142,8 @@ Logs are saved in files named `inference_YYYYMMDD_HHMMSS.log` in the current dir
 ## Notes
 
 - The scripts use Flash Attention 2 if available, falling back to eager attention if not
+  - Flash Attention is automatically installed on Linux/Mac systems for better performance
+  - On Windows, the code will fall back to standard attention
 - Models are loaded in bfloat16 precision by default to save memory
 - Intermediate results are saved periodically to prevent data loss
 - The code includes robust error handling for model loading with multiple fallback options
