@@ -338,7 +338,7 @@ def main():
     logger.info(f"Total instances in test split: {num_instances}")
     
     if args.dry_run:
-        instances = instances[:1]  # Limit to 4 instances for dry run
+        instances = instances[:4]  # Limit to 4 instances for dry run
         num_instances = len(instances)
         logger.info(f"Limited to {num_instances} instances for dry run")
     

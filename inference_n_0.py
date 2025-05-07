@@ -147,9 +147,6 @@ def main():
     args = parser.parse_args()
     
 
-    #args.dry_run = True
-    #args.dry_run = False
-
     # Setup logging
     logger = setup_logging(getattr(logging, args.log_level))
     
@@ -307,7 +304,7 @@ def main():
     logger.info(f"Total instances in test split: {num_instances}")
     
     if args.dry_run:
-        instances = instances[:1]  # Limit to 4 instances for dry run
+        instances = instances[:4]  # Limit to 4 instances for dry run
         num_instances = len(instances)
         logger.info(f"Limited to {num_instances} instances for dry run")
     
