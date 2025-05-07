@@ -17,6 +17,17 @@ The project consists of three main inference scripts:
 - Datasets
 - CUDA-compatible GPU (recommended)
 
+## Model Access
+
+This project uses the CodeLlama-7b-Python model from Meta. To access the model:
+
+1. Visit [CodeLlama-7b-Python-hf](https://huggingface.co/meta-llama/CodeLlama-7b-Python-hf)
+2. Request access by accepting the Meta license agreement
+3. Log in to Hugging Face with your account
+4. Once approved, you can use the model with your Hugging Face token
+
+Note: The model requires accepting Meta's license agreement and may take some time to get approved. Make sure to read and comply with the [Meta Llama 2 Community License Agreement](https://ai.meta.com/resources/models-and-libraries/llama-downloads/).
+
 ## Installation
 
 1. Clone the repository:
@@ -28,6 +39,11 @@ cd swe_bench_few_shots_study
 2. Install dependencies:
 ```bash
 pip install torch transformers datasets tqdm
+```
+
+3. Set up your Hugging Face token:
+```bash
+huggingface-cli login
 ```
 
 ## Usage
@@ -85,3 +101,4 @@ Logs are saved in files named `inference_YYYYMMDD_HHMMSS.log` in the current dir
 - Models are loaded in bfloat16 precision by default to save memory
 - Intermediate results are saved periodically to prevent data loss
 - The code includes robust error handling for model loading with multiple fallback options
+- Make sure you have accepted the Meta license agreement before using the model
